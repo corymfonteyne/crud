@@ -7,36 +7,46 @@ app =Flask(__name__)
 
 from app.database import data_types
 
+RESPONSE = {
+    "status": "pk"
+}
 
-@app.get("/")
+
+@app.get("/data_types")
 def index():
-    out = data_types.scan()
-    return out
+    response = dict(RESPONSE)
+    response["data_types"] = data_types.scan()
+    return response
 
 @app.get("/data_types/integers")
 def integers():
-    out = data_types.select_by_type(name="Integer")
-    return out
+    response = dict(RESPONSE)
+    response["data_types"] = data_types.select_by_type(name="Integers")
+    return response
 
 @app.get("/data_types/floats")
-def integers():
-    out = data_types.select_by_type(name="Float")
-    return out
+def floats():
+    response = dict(RESPONSE)
+    response["data_types"] = data_types.select_by_type(name="Float")
+    return response
 
 @app.get("/data_types/booleans")
-def integers():
-    out = data_types.select_by_type(name="Boolean")
-    return out 
+def bools():
+    response = dict(RESPONSE)
+    response["data_types"] = data_types.select_by_type(name="Booleans")
+    return response 
 
 @app.get("/data_types/strings")
-def integers():
-    out = data_types.select_by_type(name="Strings")
-    return out 
+def strings():
+    response = dict(RESPONSE)
+    response["data_types"] = data_types.select_by_type(name="Strings")
+    return response 
 
 @app.get("/data_types/lists")
-def integers():
-    out = data_types.select_by_type(name="Lists")
-    return out 
+def lists():
+    response = dict(RESPONSE)
+    response["data_types"] = data_types.select_by_type(name="Lists")
+    return response
 
 @app.post("/data_types")
 def create_data_type():
